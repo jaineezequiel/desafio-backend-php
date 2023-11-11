@@ -19,29 +19,16 @@ class TransacaoController extends \yii\web\Controller
         $transaction = \Yii::$app->db->beginTransaction();
 
         try {
-
             $request = \Yii::$app->request;
             $post = $request->post();
 
-            $transacao = New Transacao();
-            $transacao->load($post);
+            //@TODO fazer a autenticação de usuário
 
-            $transacao->remetente_id = $post['remetente'];
-            $transacao->destinatario_id = $post['destinatario'];
-            $transacao->valor = abs($post['valor']);
+            $transacao = New Transacao();
+            $transacao->load($post, '');
 
             if (!$transacao->validate()) {
-
-                $msgValidacao = '';
-
-                if (!empty($transacao->errors)) {
-                    $erros = $transacao->errors;
-                    foreach ($erros as $key => $value) {
-                        $msgValidacao .= $value[0] . PHP_EOL;
-                    }
-                }
-
-                throw new \Exception($msgValidacao);
+                throw new \Exception($transacao->formateErrorsToString($transacao));
             }
 
             $usuarioOrigem = Usuario::findOne($transacao->remetente_id);
@@ -62,6 +49,8 @@ class TransacaoController extends \yii\web\Controller
             // verifica se a transacao está autorizada
             $transacao->autorizada();
 
+            $transacao->valor = abs($transacao->valor);
+
             // atualiza carteiras
             $carteiraOrigem = $usuarioOrigem->getCarteira()->one();
             $carteiraOrigem->saldo -= $transacao->valor;
@@ -71,15 +60,16 @@ class TransacaoController extends \yii\web\Controller
             $carteiraDestino->saldo += $transacao->valor;
             $carteiraDestino->save();
 
-            // Notifica o usuário que recebeu o dinheiro
-            if ($usuarioDestino->notifica($transacao)) {
-                $transacao->notificado = 1;
-            }
-
             // salva os dados da transação
             $transacao->save();
 
             $transaction->commit();
+
+            // Notifica o usuário que recebeu o dinheiro
+            if ($usuarioDestino->notifica($transacao)) {
+                $transacao->notificado = 1;
+                $transacao->save();
+            }
 
             $return = array(
                 'success' => 'true'

@@ -18,7 +18,7 @@ use Yii;
  * @property Usuario $remetenteId
  * @property Usuario $destinatarioId
  */
-class Transacao extends \yii\db\ActiveRecord
+class Transacao extends Base
 {
     public static function tableName()
     {
@@ -54,6 +54,21 @@ class Transacao extends \yii\db\ActiveRecord
         }
 
         return true;
+    }
+
+    public function load($data, $formName = null)
+    {
+        if (isset($data['remetente'])) {
+            $data['remetente_id'] = $data['remetente'];
+            unset($data['remetente']);
+        }
+
+        if (isset($data['destinatario'])) {
+            $data['destinatario_id'] = $data['destinatario'];
+            unset($data['destinatario']);
+        }
+
+        return parent::load($data, $formName);
     }
 
 }
