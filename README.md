@@ -36,8 +36,10 @@ Payload
 
 POST /api/transaction
 
+<code>
 {
     "valor": 100.0,
     "remetente": 4,
     "destinatario": 3
 }
+</code>
