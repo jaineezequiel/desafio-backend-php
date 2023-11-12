@@ -48,3 +48,7 @@ POST /api/transaction
 <code>/modules/api/controllers/TransacaoController</code>  Onde fica a ação de realizar a transação de transferência de dinheiro
 
 <code>/models/</code> onde foi criado um model Base para funções que poderia ser reutilização nos demais models
+
+# Modelagem BD
+![modelagem-img](https://github.com/jaineezequiel/desafio-backend-php/assets/42620697/9d2f9d39-e871-4570-a66a-c925240f8e85)
+
