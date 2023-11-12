@@ -10,8 +10,15 @@ use PHPUnit\Util\Exception;
 use yii\httpclient\Client;
 use function app\controllers\send;
 
+/**
+ * Controller responsável pelas transações financeiras
+ */
 class TransacaoController extends \yii\web\Controller
 {
+    /**
+     * Action responsável pela transferência de dinheiro entre usuários
+     * @return Json
+     */
     public function actionIndex()
     {
         \Yii::$app->response->format = \YII\web\response::FORMAT_JSON;

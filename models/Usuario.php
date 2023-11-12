@@ -4,6 +4,7 @@ namespace app\models;
 
 use PHPUnit\Util\Exception as Exception;
 use Yii;
+use yii\bootstrap5\Offcanvas;
 use yii\httpclient\Client;
 use function PHPUnit\Framework\throwException;
 
@@ -61,6 +62,14 @@ class Usuario extends \yii\db\ActiveRecord
         return $this->hasOne(Carteira::class, ['usuario_id' => 'id']);
     }
 
+    /**
+     * Verifica se o usuário tem todos os critérios
+     * para estar apto a realizar transações
+     *
+     * @param Transacao $transacao
+     * @return boolean
+     *
+     */
     public function usuarioAptoTransacao($transacao){
         $usuario = $this;
 
@@ -71,6 +80,13 @@ class Usuario extends \yii\db\ActiveRecord
         return $usuario->saldoSuficiente($transacao->valor) ? true : false;
     }
 
+    /**
+     * Verifica se o saldo do usuário é suficiente para realizar a transação
+     *
+     * @param Number $valorTransacao
+     * @return boolean
+     *
+     */
     public function saldoSuficiente($valorTransacao)
     {
         $usuario = $this;
@@ -89,6 +105,13 @@ class Usuario extends \yii\db\ActiveRecord
         return true;
     }
 
+    /**
+     * Notifica o usuário que a transação foi concluída com sucesso
+     *
+     * @param Transacao $transacao
+     * @return boolean
+     *
+     */
     public function notifica($transacao)
     {
         $urlNotificacao = 'https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6';

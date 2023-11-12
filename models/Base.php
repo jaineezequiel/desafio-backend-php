@@ -9,11 +9,11 @@ use Yii;
 class Base extends \yii\db\ActiveRecord
 {
     /**
+     * Função responsável por formatar a label, caso o nome do atributo termine em _id (chave estrangeira)
+     * ao gerar o label será mostrado o nome do atributo sem a palavra 'id'
+     *
      * @param $name
      * @return string
-     *
-     * Caso o nome do atributo termine em _id (chave estrangeira)
-     * ao gerar o label será mostrado o nome do atributo sem a palavra 'id'
      *
      */
     public function generateAttributeLabel($name)
@@ -26,10 +26,10 @@ class Base extends \yii\db\ActiveRecord
     }
 
     /**
+     * Converte as mensagem de erro das validações de array para string
+     *
      * @param $model
      * @return string
-     * formatando as validações de array para string
-     * para serem retornadas no json
      */
     public function formateErrorsToString($model)
     {

@@ -27,6 +27,8 @@ class Transacao extends Base
 
     public function rules()
     {
+
+
         return [
             [['data'], 'safe'],
             [['remetente_id', 'destinatario_id', 'valor'], 'required'],
@@ -37,6 +39,10 @@ class Transacao extends Base
         ];
     }
 
+    /**
+     * Verifica se a transação está autorizada a ser realizada
+     * @return boolean
+     */
     public function autorizada()
     {
         $transacao = $this;
@@ -56,6 +62,14 @@ class Transacao extends Base
         return true;
     }
 
+    /**
+     * Formata o nome dos campos recebidos no post
+     * para o nome de campo correspondete no banco de dados
+     *
+     * @param $data
+     * @param $formName
+     * @return bool
+     */
     public function load($data, $formName = null)
     {
         if (isset($data['remetente'])) {
