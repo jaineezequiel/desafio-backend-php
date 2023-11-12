@@ -45,5 +45,6 @@ POST /api/transaction
 </code>
 
 # Estrutura do projeto (pastas e arquivos mais importantes)
-/modules/api/controllers/TransacaoController  Onde fica a ação de realizar a transação de transferência de dinheiro
-/models/ onde foi criado um model Base para funções que poderia ser reutilização nos demais models
+<code>/modules/api/controllers/TransacaoController</code>  Onde fica a ação de realizar a transação de transferência de dinheiro
+
+<code>/models/</code> onde foi criado um model Base para funções que poderia ser reutilização nos demais models
