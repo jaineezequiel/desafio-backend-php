@@ -2,6 +2,7 @@
 
 namespace app\models;
 use Yii;
+use yii\httpclient\Client;
 
 /**
  * Classe base com algums métodos para serem reutilizados pelos outros Models
@@ -43,5 +44,25 @@ class Base extends \yii\db\ActiveRecord
         }
 
         return $msgValidacao;
+    }
+
+    /**
+     * Envia requisição para uma api
+     *
+     * @param string $url url de destino
+     * @param array $data dados que deverão ser enviados
+     * @param string $method POST|GET
+     * @return \yii\httpclient\Response
+     */
+    public static function apiRequest($url, $data, $method = 'POST')
+    {
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod($method)
+            ->setUrl($url)
+            ->setData($data)
+            ->send();
+
+       return $response;
     }
 }

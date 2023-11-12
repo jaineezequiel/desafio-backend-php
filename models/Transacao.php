@@ -46,14 +46,14 @@ class Transacao extends Base
     public function autorizada()
     {
         $transacao = $this;
+        $data = $transacao->toArray();
+
+        if (isset($data['id'])) {
+            unset($data['id']);
+        }
 
         $urlNotificacao = 'https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc';
-        $client = new Client();
-        $response = $client->createRequest()
-            ->setMethod('POST')
-            ->setUrl($urlNotificacao)
-            ->setData($transacao->toArray())
-            ->send();
+        $response = Base::apiRequest($urlNotificacao, $data);
 
         if (!$response->getData()['message'] == 'Autorizado') {
             throw new Exception('Transação não autorizada');

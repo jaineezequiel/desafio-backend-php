@@ -115,15 +115,12 @@ class Usuario extends \yii\db\ActiveRecord
     public function notifica($transacao)
     {
         $urlNotificacao = 'https://run.mocky.io/v3/54dc2cf1-3add-45b5-b5a9-6bf7e7f1f4a6';
-        $client = new Client();
-        $response = $client->createRequest()
-            ->setMethod('POST')
-            ->setUrl($urlNotificacao)
-            ->setData([
-                'email' => $this->email,
-                'valor' => $transacao->valor
-            ])
-            ->send();
+        $data = array(
+            'email' => $this->email,
+            'valor' => $transacao->valor
+        );
+
+        $response = Base::apiRequest($urlNotificacao, $data);
 
         if ($response->getData()['message']) {
             return true;
