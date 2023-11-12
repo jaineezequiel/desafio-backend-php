@@ -52,3 +52,7 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 - Implementar funcionalidade de estorno
 - Verificar se a transação está sendo feita de forma duplicada
 
+# Como rodar na minha maquina? 
+
+
+
