@@ -1,14 +1,3 @@
-# desafio-backend-php
-Desafio Backend PHP
-
-Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o desenvolvimento e para que o foco maior seja nas regras de negócio da aplicação em si , e não em itens mais básicos e gerais.
-
-# Melhorias futuras
-- Implementar autenticação
-- Identificar o usuário com alguma chave que não seja o id . Ex: (hash, @apelido, cpf)
-- Implementar funcionalidade de estorno
-- Verificar se a transação está sendo feita de forma duplicada
-
 # Resumo do desafio
 
 Objetivo: 
@@ -44,6 +33,11 @@ POST /api/transaction
 }
 </code>
 
+# desafio-backend-php
+Desafio Backend PHP
+
+Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o desenvolvimento e para que o foco maior seja nas regras de negócio da aplicação em si , e não em itens mais básicos e gerais.
+
 # Estrutura do projeto (pastas e arquivos mais importantes)
 <code>/modules/api/controllers/TransacaoController</code>  Onde fica a ação de realizar a transação de transferência de dinheiro
 
@@ -51,4 +45,10 @@ POST /api/transaction
 
 # Modelagem BD
 ![modelagem-img](https://github.com/jaineezequiel/desafio-backend-php/assets/42620697/9d2f9d39-e871-4570-a66a-c925240f8e85)
+
+# Melhorias futuras
+- Implementar autenticação
+- Identificar o usuário com alguma chave que não seja o id . Ex: (hash, @apelido, cpf)
+- Implementar funcionalidade de estorno
+- Verificar se a transação está sendo feita de forma duplicada
 
