@@ -43,3 +43,7 @@ POST /api/transaction
     "destinatario": 3
 }
 </code>
+
+# Estrutura do projeto (pastas e arquivos mais importantes)
+/modules/api/controllers/TransacaoController  Onde fica a ação de realizar a transação de transferência de dinheiro
+/models/ onde foi criado um model Base para funções que poderia ser reutilização nos demais models
