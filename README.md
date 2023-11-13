@@ -43,7 +43,7 @@ Fazer o clone do projeto
 
 na pasta /desafio-backend-php  <code>composer update</code>
 
-Script para geração do banco de dados <code>/scriptBDMysql.sql</code>
+Script para geração do banco de dados <code>/desafio-backend-php/scriptBDMysql.sql</code>
 
 utilizei o postman para realizar os testes
 
