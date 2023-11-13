@@ -42,7 +42,10 @@ Script para geração do banco de dados <code>/scriptBDMysql.sql</code>
 
 utilizei o postman para realizar os testes
 
-POST /api/transacao
+utilizando o PHP instalado localmente, vá ate a pasta /desafio-backend-php\web
+e rodar o comando <code>php -S localhost:8000</code>
+
+POST http://localhost:8000/api/transacao
 
 <code>
 {
