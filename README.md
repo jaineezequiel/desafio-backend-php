@@ -43,8 +43,13 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 
 <code>/models/</code> onde foi criado um model Base para funções que poderia ser reutilização nos demais models
 
+<code>/tests/unit/</code> Onde ficarão os testes automatizados 
+
 # Modelagem BD
 ![modelagem-img](https://github.com/jaineezequiel/desafio-backend-php/assets/42620697/9d2f9d39-e871-4570-a66a-c925240f8e85)
+
+# Como rodar na minha maquina? 
+Script para geração do banco de dados <code>/scriptBDMysql.sql</code>
 
 # Melhorias futuras
 - Implementar autenticação
@@ -52,7 +57,6 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 - Implementar funcionalidade de estorno
 - Verificar se a transação está sendo feita de forma duplicada
 
-# Como rodar na minha maquina? 
 
 
 
