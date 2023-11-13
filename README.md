@@ -38,12 +38,19 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 ![modelagem-img](https://github.com/jaineezequiel/desafio-backend-php/assets/42620697/9d2f9d39-e871-4570-a66a-c925240f8e85)
 
 # Como rodar na minha maquina? 
+
+Fazer o clone do projeto 
+
+na pasta /desafio-backend-php  <code>composer update</code>
+
 Script para geração do banco de dados <code>/scriptBDMysql.sql</code>
 
 utilizei o postman para realizar os testes
 
 utilizando o PHP instalado localmente, vá ate a pasta /desafio-backend-php\web
 e rodar o comando <code>php -S localhost:8000</code>
+
+Payload
 
 POST http://localhost:8000/api/transacao
 
