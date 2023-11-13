@@ -21,17 +21,6 @@ No recebimento de pagamento, o usuário ou lojista precisa receber notificação
 
 Este serviço deve ser RESTFul.
 
-Payload
-
-POST /api/transaction
-
-<code>
-{
-    "valor": 100.0,
-    "remetente": 4,
-    "destinatario": 3
-}
-</code>
 
 # desafio-backend-php
 Desafio Backend PHP
@@ -43,8 +32,35 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 
 <code>/models/</code> onde foi criado um model Base para funções que poderia ser reutilização nos demais models
 
+<code>/tests/unit/</code> Onde ficarão os testes automatizados 
+
 # Modelagem BD
 ![modelagem-img](https://github.com/jaineezequiel/desafio-backend-php/assets/42620697/9d2f9d39-e871-4570-a66a-c925240f8e85)
+
+# Como rodar na minha maquina? 
+
+Fazer o clone do projeto 
+
+na pasta /desafio-backend-php  <code>composer update</code>
+
+Script para geração do banco de dados <code>/desafio-backend-php/scriptBDMysql.sql</code>
+
+utilizei o postman para realizar os testes
+
+utilizando o PHP instalado localmente, vá ate a pasta /desafio-backend-php\web
+e rodar o comando <code>php -S localhost:8000</code>
+
+Payload
+
+POST http://localhost:8000/api/transacao
+
+<code>
+{
+    "valor": 100.0,
+    "remetente": 4,
+    "destinatario": 3
+}
+</code>
 
 # Melhorias futuras
 - Implementar autenticação
@@ -52,7 +68,6 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 - Implementar funcionalidade de estorno
 - Verificar se a transação está sendo feita de forma duplicada
 
-# Como rodar na minha maquina? 
 
 
 
