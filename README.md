@@ -21,17 +21,6 @@ No recebimento de pagamento, o usuário ou lojista precisa receber notificação
 
 Este serviço deve ser RESTFul.
 
-Payload
-
-POST /api/transaction
-
-<code>
-{
-    "valor": 100.0,
-    "remetente": 4,
-    "destinatario": 3
-}
-</code>
 
 # desafio-backend-php
 Desafio Backend PHP
@@ -50,6 +39,18 @@ Para este projeto foi escolhido o Yii Framework para facilitar e agilizar o dese
 
 # Como rodar na minha maquina? 
 Script para geração do banco de dados <code>/scriptBDMysql.sql</code>
+
+utilizei o postman para realizar os testes
+
+POST /api/transacao
+
+<code>
+{
+    "valor": 100.0,
+    "remetente": 4,
+    "destinatario": 3
+}
+</code>
 
 # Melhorias futuras
 - Implementar autenticação
