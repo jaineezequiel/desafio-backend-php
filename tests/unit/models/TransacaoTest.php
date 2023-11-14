@@ -3,6 +3,7 @@
 namespace tests\models\unit;
 
 use app\models\Base;
+use app\models\Transacao;
 use Codeception\Test\Unit;
 
 class TransacaoTest extends Unit
