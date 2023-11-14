@@ -1,13 +1,13 @@
 <?php
 
-namespace unit;
+namespace tests\models\unit;
 
-use \Codeception\Test\Unit;
 use app\models\Base;
+use Codeception\Test\Unit;
 
-class TransacaoTeste extends \Codeception\Test\Unit
+class TransacaoTest extends Unit
 {
-    public function enviaDinheiroAction()
+    public function testEnviaDinheiro()
     {
        // Definir o cenário : Trasnferencia de dinheiro entre usuários
 
@@ -23,8 +23,8 @@ class TransacaoTeste extends \Codeception\Test\Unit
         // valor não numérico
 
         // Executar a ação
-        $url = 'http://localhost:8000';
-        $response = Base::apiRequest($url, $dados);
+       /* $url = 'http://localhost:8000';
+        $response = Base::apiRequest($url, $dados);*/
 
         // Verificar se o resultado é o esperado
 
