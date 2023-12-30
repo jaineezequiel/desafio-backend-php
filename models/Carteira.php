@@ -26,4 +26,21 @@ class Carteira extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuario::class, ['id' => 'usuario_id']);
     }
+
+    public static function atualizaCarteira($carteiraOrigem, $carteiraDestino,  $valor) : void
+    {
+
+        if ($valor < 0) {
+            throw new Exception('O Valor deve ser maior que zero!');
+        }
+
+        $carteiraOrigem = $carteira;
+        $carteiraOrigem->saldo -= $valor;
+        $carteiraOrigem->save();
+
+
+        $carteiraDestino->saldo += $transacao->valor;
+
+        $carteiraDestino->save();
+    }
 }

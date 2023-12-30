@@ -10,9 +10,7 @@ use PHPUnit\Util\Exception;
 use yii\httpclient\Client;
 use function app\controllers\send;
 
-/**
- * Controller responsável pelas transações financeiras
- */
+
 class TransacaoController extends \yii\web\Controller
 {
     /**
@@ -41,6 +39,9 @@ class TransacaoController extends \yii\web\Controller
             $usuarioOrigem = Usuario::findOne($transacao->remetente_id);
             $usuarioDestino = Usuario::findOne($transacao->destinatario_id);
 
+            $carteiraOrigem = $usuarioOrigem->getCarteira()->one();
+            $carteiraDestino = $usuarioDestino->getCarteira()->one();   
+
             // Validações
             if (!$usuarioOrigem) {
                 throw new \Exception('Remetente não encontrado');
@@ -50,33 +51,19 @@ class TransacaoController extends \yii\web\Controller
                 throw new \Exception('Destinatário não existe');
             }
 
-            // verifica se o usuário está apto a enviar dinheiro
             $usuarioOrigem->usuarioAptoTransacao($transacao);
-
-            // verifica se a transacao está autorizada
             $transacao->autorizada();
+            Carteira::atualizaCarteira($carteiraOrigem, $carteiraDestino,  $transacao->valor);
 
-            $transacao->valor = abs($transacao->valor);
-
-            // atualiza carteiras
-            $carteiraOrigem = $usuarioOrigem->getCarteira()->one();
-            $carteiraOrigem->saldo -= $transacao->valor;
-            $carteiraOrigem->save();
-
-            $carteiraDestino = $usuarioDestino->getCarteira()->one();
-            $carteiraDestino->saldo += $transacao->valor;
-            $carteiraDestino->save();
-
-            // salva os dados da transação
             $transacao->save();
 
             $transaction->commit();
 
             // Notifica o usuário que recebeu o dinheiro
-            if ($usuarioDestino->notifica($transacao)) {
+           /* if ($usuarioDestino->notifica($transacao)) {
                 $transacao->notificado = 1;
                 $transacao->save();
-            }
+            }*/
 
             $return = array(
                 'success' => 'true'

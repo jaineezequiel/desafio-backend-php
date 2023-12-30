@@ -7,3 +7,33 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
+    networks:
+     - my-network
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_DATABASE=yii_db
+      - MYSQL_USER=yii_db
+      - MYSQL_PASSWORD=user_password
+      - MYSQL_ROOT_PASSWORD=root_password
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+    #volumes:
+    #  - ~/mysql:/var/lib/mysql
+    networks:
+     - my-network
+  memcached:
+    container_name: memcached
+    image: memcached:latest
+    ports:
+        - "0.0.0.0:11211:11211"
+volumes:
+  my-db:
+networks:
+  my-network:
+    driver: bridge
