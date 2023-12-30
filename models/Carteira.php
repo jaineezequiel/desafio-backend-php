@@ -27,20 +27,32 @@ class Carteira extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::class, ['id' => 'usuario_id']);
     }
 
-    public static function atualizaCarteira($carteiraOrigem, $carteiraDestino,  $valor) : void
-    {
+    public function sacar(float $valor) : void{
 
-        if ($valor < 0) {
-            throw new Exception('O Valor deve ser maior que zero!');
+        if ($valor > $this->saldo) {
+            throw new Exception( "Valor indisponivel");
         }
 
-        $carteiraOrigem = $carteira;
-        $carteiraOrigem->saldo -= $valor;
+        $this->saldo -= $valor;
+
+    }
+
+    public function depositar(float $valor) : void{
+
+        if ($valor <= 0) {
+            throw new Exception( "Valor para depósito precisa ser maior que zero");
+        }
+
+        $this->saldo += $valor;
+
+    }
+
+    public static function transferir($carteiraOrigem, $carteiraDestino,  $valor) : void
+    {
+        $carteiraOrigem->sacar($valor);
         $carteiraOrigem->save();
 
-
-        $carteiraDestino->saldo += $transacao->valor;
-
+        $carteiraDestino->depositar($valor);
         $carteiraDestino->save();
     }
 }

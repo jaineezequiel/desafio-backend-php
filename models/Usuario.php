@@ -122,9 +122,7 @@ class Usuario extends \yii\db\ActiveRecord
 
         $response = Base::apiRequest($urlNotificacao, $data);
 
-        if ($response->getData()['message']) {
-            return true;
-        } else {
+        if (!$response->getData()['message']) {
             return false;
         }
     }

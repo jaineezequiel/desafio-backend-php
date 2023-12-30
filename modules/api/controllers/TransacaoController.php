@@ -53,7 +53,7 @@ class TransacaoController extends \yii\web\Controller
 
             $usuarioOrigem->usuarioAptoTransacao($transacao);
             $transacao->autorizada();
-            Carteira::atualizaCarteira($carteiraOrigem, $carteiraDestino,  $transacao->valor);
+            Carteira::transferir($carteiraOrigem, $carteiraDestino,  $transacao->valor);
 
             $transacao->save();
 
